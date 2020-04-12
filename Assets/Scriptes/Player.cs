@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GreenhouseMenu _greenhouseMenu;
     [SerializeField] private CanvasGroup _gameOver;
     [SerializeField] private CanvasGroup _victory;
+    [SerializeField] private CanvasGroup _welcome;
 
     void Start()
     {
@@ -51,6 +52,10 @@ public class Player : MonoBehaviour
         _foodCount.text = _food.ToString() + " порций";
         _hungerCount.text = _hunger.ToString() + " %";
         _metalsCount.text = _metals.ToString() + " кг";
+
+        _welcome.alpha = 1;
+        _welcome.interactable = true;
+        Time.timeScale = 0;
     }
 
     void Update()
@@ -114,6 +119,16 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(_mainMenu);
+            }
+        }
+
+        if (_welcome.interactable)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _welcome.alpha = 0;
+                _welcome.interactable = false;
+                Time.timeScale = 1;
             }
         }
     }
