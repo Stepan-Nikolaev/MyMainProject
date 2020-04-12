@@ -41,7 +41,8 @@ public class Player : MonoBehaviour
     [SerializeField] private CanvasGroup _gameOver;
     [SerializeField] private CanvasGroup _victory;
     [SerializeField] private CanvasGroup _welcome;
-
+    [SerializeField] private MenuExit _menuExit;
+ 
     void Start()
     {
         Time.timeScale = 1;
@@ -175,6 +176,11 @@ public class Player : MonoBehaviour
         {
             _animator.SetBool("BackIdle", true);
             _progressBar.StartProgressBar(4);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _menuExit.StartMenuExit();
         }
     }
 
