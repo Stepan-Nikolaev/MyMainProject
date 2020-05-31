@@ -6,27 +6,27 @@ using UnityEngine.UI;
 public class MiningMenu : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private CanvasGroup _miningMenu;
+    [SerializeField] private CanvasGroup _miningGrope;
     [SerializeField] private Button _button1;
     [SerializeField] private ProgressBar _progressBar;
-    public void StartMiningMenu()
+    public void OpenMiningMenu()
     {
         _button1.Select();
-        _miningMenu.alpha = 1;
-        _miningMenu.interactable = true;
+        _miningGrope.alpha = 1;
+        _miningGrope.interactable = true;
     }
 
     public void ChoiceLocation(int locationID)
     {
         _progressBar.StartProgressBar(locationID);
 
-        _miningMenu.alpha = 0;
-        _miningMenu.interactable = false;
+        _miningGrope.alpha = 0;
+        _miningGrope.interactable = false;
     }
     public void Exit()
     {
-        _miningMenu.alpha = 0;
-        _miningMenu.interactable = false;
+        _miningGrope.alpha = 0;
+        _miningGrope.interactable = false;
         _player.TurnMovement(true);
     }
 }

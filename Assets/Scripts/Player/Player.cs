@@ -4,27 +4,18 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    public float Speed;
+    private float Speed;
 
-    [SerializeField] private int _food = 10;
     [SerializeField] private float _hunger = 0;
-    [SerializeField] private float _metals = 10;
-
     [SerializeField] private float _time;
     [SerializeField] private float _period;
     [SerializeField] private float _timeDrink;
     [SerializeField] private float _periodDrink;
     [SerializeField] private float _countWaterDrinking;
-
-    private Rigidbody2D _rigidbody;
-    private Animator _animator;
-    private bool _move;
-    private string _mainMenu = "MainMenu";
-    private bool _isVictory = false;
-
     [SerializeField] private ComunicationUnitMenu _comunicationUnitMenu;
     [SerializeField] private MiningRobot _miningRobot;
     [SerializeField] private Greenhouse _greenhouse;
@@ -32,9 +23,6 @@ public class Player : MonoBehaviour
     [SerializeField] private SewageTreatment _sewageTreatment;
     [SerializeField] private PowerManagement _powerMenagement;
     [SerializeField] private ProgressBar _progressBar;
-    [SerializeField] private TMP_Text _foodCount;
-    [SerializeField] private TMP_Text _hungerCount;
-    [SerializeField] private TMP_Text _metalsCount;
     [SerializeField] private CanvasGroup _alertPanel;
     [SerializeField] private ReactorMenu _reactorMenu;
     [SerializeField] private GreenhouseMenu _greenhouseMenu;
@@ -42,17 +30,21 @@ public class Player : MonoBehaviour
     [SerializeField] private CanvasGroup _victory;
     [SerializeField] private CanvasGroup _welcome;
     [SerializeField] private MenuExit _menuExit;
- 
+
+    private Rigidbody2D _rigidbody;
+    private Animator _animator;
+    private bool _move;
+    private string _mainMenu = "MainMenu";
+    private bool _isVictory = false;
+
+    public event UnityAction<float> HungerChanged;
+
     void Start()
     {
         Time.timeScale = 1;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _move = true;
-
-        _foodCount.text = _food.ToString() + " порций";
-        _hungerCount.text = _hunger.ToString() + " %";
-        _metalsCount.text = _metals.ToString() + " кг";
 
         _welcome.alpha = 1;
         _welcome.interactable = true;
@@ -63,8 +55,9 @@ public class Player : MonoBehaviour
     {
         if (_time <= 0)
         {
-            _hunger += 10;
+            _hunger = Mathf.Clamp(_hunger + 10, 0, 100);
             _time = _period;
+            HungerChanged?.Invoke(_hunger);
         }
         else
         {
@@ -80,10 +73,6 @@ public class Player : MonoBehaviour
         {
             _timeDrink -= Time.deltaTime;
         }
-
-        _foodCount.text = _food.ToString() + " порций";
-        _hungerCount.text = Mathf.Clamp(_hunger, 0, 100).ToString() + " %";
-        _metalsCount.text = _metals.ToString() + " кг";
 
         if (_hunger >= 100)
         {
@@ -158,10 +147,6 @@ public class Player : MonoBehaviour
 
             _rigidbody.velocity = new Vector2(direction * Speed, _rigidbody.velocity.y);
         }
-
-        _foodCount.text = _food.ToString() + " порций";
-        _hungerCount.text = _hunger.ToString() + " %";
-        _metalsCount.text = _metals.ToString() + " кг";
 
         if (_hunger >= 80)
         {
@@ -279,40 +264,18 @@ public class Player : MonoBehaviour
     public void Eaten()
     {
         _animator.SetBool("BackIdle", false);
-        _food -= 1;
-        _hunger -= 50;
-    }
 
-    public void TakeHarvest(int countHarvest)
-    {
-        _food += countHarvest;
-        TurnMovement(true);
-    }
 
-    public void TakeSpoil(int countSpoil)
-    {
-        _metals += countSpoil;
-        TurnMovement(true);
+        if (_greenhouse.TakeFood())
+        _hunger = Mathf.Clamp(_hunger - 50, 0, 100);
+
+        HungerChanged?.Invoke(_hunger);
     }
 
     public void TurnMovement(bool turnOn)
     {
         _animator.SetBool("BackIdle", !turnOn);
         _move = turnOn;
-    }
-
-    public bool GiveMetals(int countGivenMetal)
-    {
-        if (countGivenMetal <= _metals)
-        {
-            _metals -= countGivenMetal;
-
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     public void Victory()

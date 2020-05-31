@@ -3,56 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class Greenhouse : MonoBehaviour
 {
+    [SerializeField] private Tomato _tomatoIcon;
+    [SerializeField] private Corn _cornIcon;
+    [SerializeField] private Potato _potatoIcon;
     [SerializeField] private SewageTreatment _sewageTreatment;
     [SerializeField] private PowerManagement _powerMenagement;
-    [SerializeField] private Image _iconHarvestCorn;
-    [SerializeField] private Image _iconHarvestPotato;
-    [SerializeField] private Image _iconHarvestTomato;
     [SerializeField] private Player _player;
-    [SerializeField] private float _timeGrowthTomatoes;
-    [SerializeField] private float _timeGrowthCorn;
-    [SerializeField] private float _timeGrowthPotatoes;
     [SerializeField] private float _timeWatering;
     [SerializeField] private float _periodWatering;
     [SerializeField] private float _countWatering;
-    [SerializeField] private int _countPortionsTomatoes;
-    [SerializeField] private int _countPortionsCorn;
-    [SerializeField] private int _countPortionsPotatoes;
     [SerializeField] private float _time;
+    [SerializeField] private int _foodCount;
     [SerializeField] private TMP_Text _timer;
     [SerializeField] private CanvasGroup _timerPanel;
 
     private int _countPortions;
     private bool _harvest;
-    private Image _iconHarvest;
     private Coroutine _growth;
     private bool _isGrowing;
+    private Crops _chosenVegetable;
+
+    public event UnityAction<int> FoodChanger;
+
+    private void Start()
+    {
+        FoodChanger?.Invoke(_foodCount);
+    }
 
     public void TomatoesChoice()
     {
-        _iconHarvest = _iconHarvestTomato;
-        _time = _timeGrowthTomatoes;
-        _countPortions = _countPortionsTomatoes;
+        _chosenVegetable = _tomatoIcon;
+        _time = _tomatoIcon.GetGrowthTime();
+        _countPortions = _tomatoIcon.GetCountPortions();
 
         StartGrowth();
     }
 
     public void CornChoice()
     {
-        _iconHarvest = _iconHarvestCorn;
-        _time = _timeGrowthCorn;
-        _countPortions = _countPortionsCorn;
+        _chosenVegetable = _cornIcon;
+        _time = _cornIcon.GetGrowthTime();
+        _countPortions = _cornIcon.GetCountPortions();
 
         StartGrowth();
     }
     public void PotatoesChoice()
     {
-        _iconHarvest = _iconHarvestPotato;
-        _time = _timeGrowthPotatoes;
-        _countPortions = _countPortionsPotatoes;
+        _chosenVegetable = _potatoIcon;
+        _time = _potatoIcon.GetGrowthTime();
+        _countPortions = _potatoIcon.GetCountPortions();
 
         StartGrowth();
     }
@@ -105,24 +108,21 @@ public class Greenhouse : MonoBehaviour
             yield return null;
         }
 
-        if (_time <= 0)
-        {
-            _harvest = true;
-            _timerPanel.alpha = 0;
-            _iconHarvest.enabled = true;
-            _growth = null;
-            _isGrowing = false;
-        }
-
+        _timerPanel.alpha = 0;
+        _chosenVegetable.TurnIcon();
+        _growth = null;
+        _isGrowing = false;
     }
 
     public void Harvest()
     {
         if (_harvest)
         {
-            _player.TakeHarvest(_countPortions);
+            _foodCount += _countPortions;
             _harvest = false;
-            _iconHarvest.enabled = false;
+            _chosenVegetable.TurnIcon();
+            _player.TurnMovement(true);
+            FoodChanger?.Invoke(_foodCount);
         }
         else
         {
@@ -133,5 +133,20 @@ public class Greenhouse : MonoBehaviour
     public bool IsGrowing()
     {
         return _isGrowing;
+    }
+
+    public bool TakeFood()
+    {
+        if (_foodCount > 0)
+        {
+            _foodCount -= 1;
+            FoodChanger?.Invoke(_foodCount);
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

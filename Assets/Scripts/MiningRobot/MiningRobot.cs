@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class MiningRobot : MonoBehaviour
 {
@@ -19,12 +20,20 @@ public class MiningRobot : MonoBehaviour
     [SerializeField] private float _time;
     [SerializeField] private TMP_Text _timer;
     [SerializeField] private CanvasGroup _timerPanel;
+    [SerializeField] private float _metalsCount;
 
     private int _countSpoil;
     private bool _spoil;
     private Coroutine _mining;
     private Coroutine _turnMiningRobotImg;
     private bool _isMining;
+
+    public event UnityAction<float> MetalsChanged;
+
+    private void Start()
+    {
+        MetalsChanged?.Invoke(_metalsCount);
+    }
 
     public void ContinueCorutine()
     {
@@ -104,9 +113,11 @@ public class MiningRobot : MonoBehaviour
     {
         if (_spoil)
         {
-            _player.TakeSpoil(_countSpoil);
+            _metalsCount += _countSpoil;
             _spoil = false;
             _iconSpoil.enabled = false;
+            _player.TurnMovement(true);
+            MetalsChanged?.Invoke(_metalsCount);
         }
         else
         {
@@ -176,6 +187,21 @@ public class MiningRobot : MonoBehaviour
             _miningRobotImg.fillAmount -= Time.deltaTime;
 
             yield return null;
+        }
+    }
+
+    public bool GiveMetals(int countGivenMetal)
+    {
+        if (countGivenMetal <= _metalsCount)
+        {
+            _metalsCount -= countGivenMetal;
+            MetalsChanged?.Invoke(_metalsCount);
+
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

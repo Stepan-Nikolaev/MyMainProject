@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     private bool _authorsOpened = false;
+
     public void Play(string levelLabel)
     {
         SceneManager.LoadScene(levelLabel);
     }
 
-    public void Authors(Animator animator)
+    public void ShowAuthors(Animator animator)
     {
         _authorsOpened = !_authorsOpened;
 

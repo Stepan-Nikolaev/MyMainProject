@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuExit : MonoBehaviour
 {
-    private string _mainMenu = "MainMenu";
-
-    [SerializeField] private Player _palyer;
     [SerializeField] private CanvasGroup _menuExit;
     [SerializeField] private Button _button1;
 
@@ -27,12 +24,12 @@ public class MenuExit : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void Yes()
+    public void Exit()
     {
-        SceneManager.LoadScene(_mainMenu);
+        SceneManager.LoadScene("MainMenu");
     }
 
-    public void No()
+    public void ReturnToGame()
     {
         Close();
     }
