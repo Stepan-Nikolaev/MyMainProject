@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ReactorMenu : MonoBehaviour
@@ -10,6 +11,9 @@ public class ReactorMenu : MonoBehaviour
     [SerializeField] private CanvasGroup _reactorMenu;
     [SerializeField] private PowerMenu _PowerMenu;
     [SerializeField] private Button _button1;
+
+    public event UnityAction<bool> CanMoveChanged;
+
     public void StartReactorMenu()
     {
         _button1.Select();
@@ -36,6 +40,6 @@ public class ReactorMenu : MonoBehaviour
     {
         _reactorMenu.alpha = 0;
         _reactorMenu.interactable = false;
-        _player.TurnMovement(true);
+        CanMoveChanged?.Invoke(true);
     }
 }

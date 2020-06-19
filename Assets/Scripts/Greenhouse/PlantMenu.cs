@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlantMenu : MonoBehaviour
@@ -9,6 +10,9 @@ public class PlantMenu : MonoBehaviour
     [SerializeField] private CanvasGroup _plantMenu;
     [SerializeField] private Button _button1;
     [SerializeField] private ProgressBar _progressBar;
+
+    public event UnityAction<bool> CanMoveChanged;
+
     public void StartPlantMenu()
     {
         _button1.Select();
@@ -27,6 +31,6 @@ public class PlantMenu : MonoBehaviour
     {
         _plantMenu.alpha = 0;
         _plantMenu.interactable = false;
-        _player.TurnMovement(true);
+        CanMoveChanged?.Invoke(true);
     }
 }

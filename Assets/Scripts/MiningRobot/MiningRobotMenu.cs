@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class MiningRobotMenu : MonoBehaviour
@@ -10,6 +11,9 @@ public class MiningRobotMenu : MonoBehaviour
     [SerializeField] private CanvasGroup _miningRobotMenu;
     [SerializeField] private MiningMenu _miningMenu;
     [SerializeField] private Button _button1;
+
+    public event UnityAction<bool> CanMoveChanged;
+
     public void StartMiningRobotMenu()
     {
         _button1.Select();
@@ -35,6 +39,6 @@ public class MiningRobotMenu : MonoBehaviour
     {
         _miningRobotMenu.alpha = 0;
         _miningRobotMenu.interactable = false;
-        _player.TurnMovement(true);
+        CanMoveChanged?.Invoke(true);
     }
 }

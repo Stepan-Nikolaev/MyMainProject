@@ -29,6 +29,7 @@ public class MiningRobot : MonoBehaviour
     private bool _isMining;
 
     public event UnityAction<float> MetalsChanged;
+    public event UnityAction<bool> CanMoveChanged;
 
     private void Start()
     {
@@ -83,7 +84,7 @@ public class MiningRobot : MonoBehaviour
         }
         else
         {
-            _player.TurnMovement(true);
+            CanMoveChanged?.Invoke(true);
         }
     }
 
@@ -116,12 +117,12 @@ public class MiningRobot : MonoBehaviour
             _metalsCount += _countSpoil;
             _spoil = false;
             _iconSpoil.enabled = false;
-            _player.TurnMovement(true);
+            CanMoveChanged?.Invoke(true);
             MetalsChanged?.Invoke(_metalsCount);
         }
         else
         {
-            _player.TurnMovement(true);
+            CanMoveChanged?.Invoke(true);
         }
     }
 

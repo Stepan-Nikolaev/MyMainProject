@@ -28,6 +28,7 @@ public class Greenhouse : MonoBehaviour
     private Crops _chosenVegetable;
 
     public event UnityAction<int> FoodChanger;
+    public event UnityAction<bool> CanMoveChanged;
 
     private void Start()
     {
@@ -83,7 +84,7 @@ public class Greenhouse : MonoBehaviour
         }
         else
         {
-            _player.TurnMovement(true);
+            CanMoveChanged?.Invoke(true);
         }
     }
 
@@ -121,12 +122,12 @@ public class Greenhouse : MonoBehaviour
             _foodCount += _countPortions;
             _harvest = false;
             _chosenVegetable.TurnIcon();
-            _player.TurnMovement(true);
+            CanMoveChanged?.Invoke(true);
             FoodChanger?.Invoke(_foodCount);
         }
         else
         {
-            _player.TurnMovement(true);
+            CanMoveChanged?.Invoke(true);
         }
     }
 

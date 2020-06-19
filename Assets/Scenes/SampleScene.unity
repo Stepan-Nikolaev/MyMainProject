@@ -6793,7 +6793,7 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 7.343189, y: 3.9386423}
-      - {x: -5.7622895, y: 3.9769855}
+      - {x: -5.7572603, y: 4.0272884}
       - {x: 3.0336971, y: 3.8635435}
       - {x: 7.3777614, y: 3.9186661}
       - {x: 7.333078, y: 1.5705874}
@@ -6803,10 +6803,15 @@ PolygonCollider2D:
       - {x: 11.409864, y: 0.9158044}
       - {x: 11.419596, y: -1.5287735}
       - {x: -5.725376, y: -1.7135887}
-      - {x: -5.7584248, y: 3.9945884}
+      - {x: -5.7360454, y: -1.5613071}
+      - {x: -5.7788014, y: 4.1056204}
+      - {x: -5.7491198, y: 4.0271616}
+      - {x: -5.6770744, y: 3.9794457}
+      - {x: -5.6428876, y: -1.5761218}
+      - {x: -5.732149, y: -1.4864938}
       - {x: -5.725761, y: -1.6868849}
       - {x: -5.714495, y: -1.6787361}
-      - {x: -5.725768, y: -1.6449045}
+      - {x: -5.7354913, y: -1.620591}
       - {x: 11.363664, y: -1.5756227}
       - {x: 11.356371, y: 0.9025216}
       - {x: 7.363337, y: 1.0660685}
@@ -14379,24 +14384,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e287e61afe403d428c89e991a541da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
   _hunger: 0
   _time: 0
   _period: 10
   _timeDrink: 5
   _periodDrink: 5
   _countWaterDrinking: 0.5
-  _comunicationUnitMenu: {fileID: 1165955511}
-  _miningRobot: {fileID: 1076912779}
   _greenhouse: {fileID: 124335957}
-  _miningRobotMenu: {fileID: 1728266232}
   _sewageTreatment: {fileID: 990815747}
-  _powerMenagement: {fileID: 385572661}
-  _progressBar: {fileID: 79313708}
-  _metalsCount: {fileID: 1494948897}
   _alertPanel: {fileID: 1204458532}
-  _reactorMenu: {fileID: 804110903}
-  _greenhouseMenu: {fileID: 2082776089}
   _gameOver: {fileID: 368544300}
   _victory: {fileID: 1559626493}
   _welcome: {fileID: 2004639827}
@@ -14413,6 +14409,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857f366f9b781c94f99ff96f473e2721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _progressBar: {fileID: 79313708}
+  _menuExit: {fileID: 1517755906}
+  _powerManagement: {fileID: 385572661}
+  _greenhouse: {fileID: 124335957}
+  _greenhouseMenu: {fileID: 2082776089}
+  _reactorMenu: {fileID: 804110903}
+  _miningRobot: {fileID: 1076912779}
+  _miningRobotMenu: {fileID: 1728266232}
+  _comunicationUnitMenu: {fileID: 1165955511}
 --- !u!114 &1586179473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14425,6 +14430,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273c7fc08e02cc9438494132ba975252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 3
+  _player: {fileID: 1586179471}
+  _playerInput: {fileID: 1586179472}
+  _progressBar: {fileID: 79313708}
+  _miningRobot: {fileID: 1076912779}
+  _comunicationUnitMenu: {fileID: 1165955511}
+  _miningMenu: {fileID: 171913154}
+  _greenhouse: {fileID: 124335957}
+  _greenhouseMenu: {fileID: 2082776089}
+  _miningRobotMenu: {fileID: 1728266232}
+  _plantMenu: {fileID: 1515055381}
+  _powerMenu: {fileID: 1156996799}
+  _comunicationUnit: {fileID: 1866397107}
+  _reactorMenu: {fileID: 804110903}
 --- !u!1 &1592692882
 GameObject:
   m_ObjectHideFlags: 0
@@ -18945,5 +18964,4 @@ MonoBehaviour:
   _countPower: 14
   _status: {fileID: 1702990027}
   _textButtonLevelUp: {fileID: 156311957}
-  _player: {fileID: 1586179471}
   _miningRobot: {fileID: 1076912779}

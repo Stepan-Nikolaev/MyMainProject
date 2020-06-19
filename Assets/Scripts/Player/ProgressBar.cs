@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class ProgressBar : MonoBehaviour
 {
@@ -17,10 +18,12 @@ public class ProgressBar : MonoBehaviour
     [SerializeField] private float _time;
     [SerializeField] private float _period;
 
+    public event UnityAction<bool> CanMoveChanged;
+
     public void StartProgressBar(int actID)
     {
         _time = 0;
-        _player.TurnMovement(false);
+        CanMoveChanged?.Invoke(false);
         StartCoroutine(Progress(actID));
     }
 
@@ -66,7 +69,7 @@ public class ProgressBar : MonoBehaviour
                     break;
             }
 
-            _player.TurnMovement(true);
+            CanMoveChanged?.Invoke(true);
             _progressBar.alpha = 0;
         }
     }

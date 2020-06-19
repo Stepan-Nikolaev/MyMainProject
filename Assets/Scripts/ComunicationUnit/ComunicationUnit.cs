@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class ComunicationUnit : MonoBehaviour
 {
+    [SerializeField] private bool _victory;
     [SerializeField] private float _time;
     [SerializeField] private float _timeSending;
     [SerializeField] private Reactor _reactor;
     [SerializeField] private PowerManagement _powerMenagement;
     [SerializeField] private TMP_Text _timer;
     [SerializeField] private CanvasGroup _timerPanel;
-    [SerializeField] private Player _player;
+    [SerializeField] private GameUI _gameUI;
 
     private Coroutine _sending;
+
+    public event UnityAction<bool> CanMoveChanged;
 
     public void StartSending()
     {
@@ -24,7 +28,7 @@ public class ComunicationUnit : MonoBehaviour
             _sending = StartCoroutine(Sending());
         }
 
-        _player.TurnMovement(true);
+        CanMoveChanged?.Invoke(true);
     }
 
     public void ContinueCorutine()
@@ -55,6 +59,6 @@ public class ComunicationUnit : MonoBehaviour
 
         _timerPanel.alpha = 0;
         _reactor.SendingCansel();
-        _player.Victory();
+        _gameUI.Victory();
     }
 }

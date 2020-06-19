@@ -18,7 +18,6 @@ public class Reactor : MonoBehaviour
     [SerializeField] private int _countPower;
     [SerializeField] private TMP_Text _status;
     [SerializeField] private Text _textButtonLevelUp;
-    [SerializeField] private Player _player;
     [SerializeField] private MiningRobot _miningRobot;
 
     public event UnityAction<int> PowerChanged;
