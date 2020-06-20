@@ -14385,18 +14385,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunger: 0
-  _time: 0
-  _period: 10
+  _timeHunger: 0
+  _periodHunger: 15
   _timeDrink: 5
   _periodDrink: 5
   _countWaterDrinking: 0.5
   _greenhouse: {fileID: 124335957}
   _sewageTreatment: {fileID: 990815747}
-  _alertPanel: {fileID: 1204458532}
-  _gameOver: {fileID: 368544300}
-  _victory: {fileID: 1559626493}
-  _welcome: {fileID: 2004639827}
-  _menuExit: {fileID: 1517755906}
+  _gameUI: {fileID: 1720546773}
 --- !u!114 &1586179472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14418,6 +14414,7 @@ MonoBehaviour:
   _miningRobot: {fileID: 1076912779}
   _miningRobotMenu: {fileID: 1728266232}
   _comunicationUnitMenu: {fileID: 1165955511}
+  _gameUI: {fileID: 1720546773}
 --- !u!114 &1586179473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15800,8 +15797,9 @@ GameObject:
   - component: {fileID: 1720546771}
   - component: {fileID: 1720546770}
   - component: {fileID: 1720546769}
+  - component: {fileID: 1720546773}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15890,6 +15888,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1720546773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720546768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5d61f7f4d565941b65886269afc6e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _alertPanel: {fileID: 1204458532}
+  _gameOver: {fileID: 368544300}
+  _victory: {fileID: 1559626493}
+  _welcome: {fileID: 2004639827}
+  _menuExit: {fileID: 1517755906}
+  _animator: {fileID: 1586179470}
 --- !u!1 &1728266230
 GameObject:
   m_ObjectHideFlags: 0
@@ -16829,13 +16845,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b0d74fd32cd4149b6d4f68545691c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _victory: 0
   _time: 0
   _timeSending: 180
   _reactor: {fileID: 2137294583}
   _powerMenagement: {fileID: 385572661}
   _timer: {fileID: 2006614071}
   _timerPanel: {fileID: 650177901}
-  _player: {fileID: 1586179471}
+  _gameUI: {fileID: 1720546773}
 --- !u!1 &1866440611
 GameObject:
   m_ObjectHideFlags: 0

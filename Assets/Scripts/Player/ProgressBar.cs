@@ -14,7 +14,6 @@ public class ProgressBar : MonoBehaviour
     [SerializeField] private Greenhouse _greenhouse;
     [SerializeField] private Image _progressImage;
     [SerializeField] private TMP_Text _progressText;
-
     [SerializeField] private float _time;
     [SerializeField] private float _period;
 

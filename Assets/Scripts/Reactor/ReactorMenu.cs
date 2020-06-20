@@ -30,7 +30,7 @@ public class ReactorMenu : MonoBehaviour
 
     public void CallPowerMenu()
     {
-        _PowerMenu.StartPowerMenu();
+        _PowerMenu.Open();
 
         _reactorMenu.alpha = 0;
         _reactorMenu.interactable = false;

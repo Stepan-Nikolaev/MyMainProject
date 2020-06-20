@@ -9,8 +9,8 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _hunger = 0;
-    [SerializeField] private float _time;
-    [SerializeField] private float _period;
+    [SerializeField] private float _timeHunger;
+    [SerializeField] private float _periodHunger;
     [SerializeField] private float _timeDrink;
     [SerializeField] private float _periodDrink;
     [SerializeField] private float _countWaterDrinking;
@@ -30,15 +30,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (_time <= 0)
+        if (_timeHunger <= 0)
         {
             _hunger = Mathf.Clamp(_hunger + 10, 0, 100);
-            _time = _period;
+            _timeHunger = _periodHunger;
             HungerChanged?.Invoke(_hunger);
         }
         else
         {
-            _time -= Time.deltaTime;
+            _timeHunger -= Time.deltaTime;
         }
 
         if (_timeDrink <= 0)

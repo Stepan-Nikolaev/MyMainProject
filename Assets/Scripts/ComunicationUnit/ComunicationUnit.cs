@@ -15,7 +15,6 @@ public class ComunicationUnit : MonoBehaviour
     [SerializeField] private TMP_Text _timer;
     [SerializeField] private CanvasGroup _timerPanel;
     [SerializeField] private GameUI _gameUI;
-
     private Coroutine _sending;
 
     public event UnityAction<bool> CanMoveChanged;

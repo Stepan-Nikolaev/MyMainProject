@@ -12,13 +12,13 @@ public class PowerMenu : MonoBehaviour
 
     public event UnityAction<bool> CanMoveChanged;
 
-    public void StartPowerMenu()
+    public void Open()
     {
         _powerMenu.interactable = true;
         _powerMenu.alpha = 1;
         _button1.Select();
     }
-    public void Exit()
+    public void Close()
     {
         _powerMenu.interactable = false;
         _powerMenu.alpha = 0;

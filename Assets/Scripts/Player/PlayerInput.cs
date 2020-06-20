@@ -55,7 +55,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Greenhouse"))
+        if (collision.TryGetComponent(out Greenhouse greenhouse))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -69,7 +69,7 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("PowerStation"))
+        if (collision.TryGetComponent(out Reactor reactor))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -83,7 +83,7 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("MiningRobot"))
+        if (collision.TryGetComponent(out MiningRobot miningRobot))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -97,7 +97,7 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("CommunicationUnit"))
+        if (collision.TryGetComponent(out ComunicationUnit comunicationUnit))
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
