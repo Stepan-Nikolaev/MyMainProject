@@ -12,7 +12,6 @@ public class Greenhouse : MonoBehaviour
     [SerializeField] private Potato _potatoIcon;
     [SerializeField] private SewageTreatment _sewageTreatment;
     [SerializeField] private PowerManagement _powerMenagement;
-    [SerializeField] private Player _player;
     [SerializeField] private float _timeWatering;
     [SerializeField] private float _periodWatering;
     [SerializeField] private float _countWatering;
@@ -28,7 +27,6 @@ public class Greenhouse : MonoBehaviour
     private Crops _chosenVegetable;
 
     public event UnityAction<int> FoodChanger;
-    public event UnityAction<bool> CanMoveChanged;
 
     private void Start()
     {
@@ -65,11 +63,11 @@ public class Greenhouse : MonoBehaviour
     {
         if (_growth != null)
         {
-            if (_powerMenagement.UseRoom(1))
+            if (_powerMenagement.UseRoom("Greenhouse"))
             {
                 _growth = StartCoroutine(Growth());
             }
-            else if (!_powerMenagement.UseRoom(1))
+            else if (!_powerMenagement.UseRoom("Greenhouse"))
             {
                 StopCoroutine(_growth);
             }
@@ -81,10 +79,6 @@ public class Greenhouse : MonoBehaviour
         {
             _growth = StartCoroutine(Growth());
             _isGrowing = true;
-        }
-        else
-        {
-            CanMoveChanged?.Invoke(true);
         }
     }
 
@@ -113,6 +107,7 @@ public class Greenhouse : MonoBehaviour
         _chosenVegetable.TurnIcon();
         _growth = null;
         _isGrowing = false;
+        _harvest = true;
     }
 
     public void Harvest()
@@ -122,12 +117,7 @@ public class Greenhouse : MonoBehaviour
             _foodCount += _countPortions;
             _harvest = false;
             _chosenVegetable.TurnIcon();
-            CanMoveChanged?.Invoke(true);
             FoodChanger?.Invoke(_foodCount);
-        }
-        else
-        {
-            CanMoveChanged?.Invoke(true);
         }
     }
 

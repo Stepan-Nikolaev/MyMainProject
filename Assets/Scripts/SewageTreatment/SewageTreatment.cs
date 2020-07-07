@@ -23,7 +23,7 @@ public class SewageTreatment : MonoBehaviour
 
     private void Update()
     {
-        if (_powerMeneger.UseRoom(5))
+        if (_powerMeneger.UseRoom("SewageTreatment"))
         {
             if (_time <= 0)
             {

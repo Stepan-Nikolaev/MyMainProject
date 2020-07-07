@@ -625,6 +625,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &40865776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1271,13 +1282,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 385572661}
         m_MethodName: Switch
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: PowerStation
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &88109689
@@ -1470,7 +1481,6 @@ MonoBehaviour:
   _potatoIcon: {fileID: 1302915129}
   _sewageTreatment: {fileID: 990815747}
   _powerMenagement: {fileID: 385572661}
-  _player: {fileID: 1586179471}
   _timeWatering: 5
   _periodWatering: 5
   _countWatering: 0.5
@@ -1623,6 +1633,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &146782564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1763,13 +1784,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 385572661}
         m_MethodName: Switch
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SewageTreatment
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &154093663
@@ -2021,13 +2042,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 171913154}
         m_MethodName: ChoiceLocation
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MineOnPlateau
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &160486297
@@ -2142,9 +2163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383b22e2ea5007e43ae8fac019a69a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1586179471}
   _miningGrope: {fileID: 171913155}
-  _button1: {fileID: 160486296}
+  _firstSelectedButton: {fileID: 160486296}
   _progressBar: {fileID: 79313708}
 --- !u!225 &171913155
 CanvasGroup:
@@ -2468,7 +2488,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1156996799}
-        m_MethodName: Exit
+        m_MethodName: Close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2477,6 +2497,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &241645218
 MonoBehaviour:
@@ -2898,13 +2929,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 171913154}
         m_MethodName: ChoiceLocation
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MineOnCaves
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &275666307
@@ -3084,13 +3115,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 385572661}
         m_MethodName: Switch
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Greenhouse
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124335957}
@@ -3558,7 +3589,7 @@ GameObject:
   - component: {fileID: 354355790}
   - component: {fileID: 354355789}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: Close
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3628,7 +3659,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804110903}
-        m_MethodName: Exit
+        m_MethodName: Close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3637,6 +3668,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &354355790
 MonoBehaviour:
@@ -4182,13 +4224,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 385572661}
         m_MethodName: Switch
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 7
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ComunicationUnit
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1866397107}
@@ -4781,13 +4823,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1515055381}
         m_MethodName: ChoiceVegetables
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: PlantCorn
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &474863752
@@ -4910,13 +4952,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 385572661}
         m_MethodName: Switch
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Synthesizer
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &475998795
@@ -5287,7 +5329,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1517755906}
-        m_MethodName: No
+        m_MethodName: Close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7191,6 +7233,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &694137753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7886,10 +7939,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _progressBar: {fileID: 79313708}
-  _player: {fileID: 1586179471}
   _reactorMenu: {fileID: 804110902}
   _PowerMenu: {fileID: 1156996799}
-  _button1: {fileID: 1684971735}
+  _firstSelectedButton: {fileID: 1684971735}
 --- !u!1 &807363716
 GameObject:
   m_ObjectHideFlags: 0
@@ -7900,6 +7952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 807363718}
   - component: {fileID: 807363717}
+  - component: {fileID: 807363719}
   m_Layer: 0
   m_Name: StairsZone
   m_TagString: Stairs
@@ -7947,6 +8000,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &807363719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807363716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b692c41bf2397b4e8d88413ec111f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &814480439
 GameObject:
   m_ObjectHideFlags: 0
@@ -8567,13 +8632,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 171913154}
         m_MethodName: ChoiceLocation
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MineOnRocks
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &922130875
@@ -10131,7 +10196,6 @@ MonoBehaviour:
   _miningRobotImg: {fileID: 1262502964}
   _iconSpoil: {fileID: 1253557205}
   _powerMenagement: {fileID: 385572661}
-  _player: {fileID: 1586179471}
   _timeMiningPlateau: 90
   _timeMiningRocks: 180
   _timeMiningCaves: 300
@@ -10535,6 +10599,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1148020880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10766,9 +10841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f2d308abcfe9b4fa1033a2cb6347fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1586179471}
   _powerMenu: {fileID: 1156996800}
-  _button1: {fileID: 281257225}
+  _firstSelectedButton: {fileID: 281257225}
 --- !u!225 &1156996800
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -10938,13 +11012,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 385572661}
         m_MethodName: Switch
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 6
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Bedroom
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1159145479
@@ -11086,7 +11160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _comunicationUnit: {fileID: 1866397107}
   _comunicationUnitMenu: {fileID: 1165955508}
-  _player: {fileID: 1586179471}
   _firstSelectedButton: {fileID: 1266787880}
 --- !u!1 &1182320399
 GameObject:
@@ -12361,6 +12434,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1266787881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13069,6 +13153,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1411679925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13266,13 +13361,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1515055381}
         m_MethodName: ChoiceVegetables
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: PlantPotatoes
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1450615353
@@ -13744,9 +13839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782f29cba893a0a44b4a46863814d45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1586179471}
   _plantMenu: {fileID: 1515055382}
-  _button1: {fileID: 1914336278}
+  _firstSelectedButton: {fileID: 1914336278}
   _progressBar: {fileID: 79313708}
 --- !u!225 &1515055382
 CanvasGroup:
@@ -13899,7 +13993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuExit: {fileID: 1517755903}
-  _button1: {fileID: 527217114}
+  _firstSelectedButton: {fileID: 0}
 --- !u!1 &1538647403
 GameObject:
   m_ObjectHideFlags: 0
@@ -14386,9 +14480,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hunger: 0
   _timeHunger: 0
-  _periodHunger: 15
-  _timeDrink: 5
-  _periodDrink: 5
+  _periodHunger: 20
+  _timeDrink: 15
+  _periodDrink: 15
   _countWaterDrinking: 0.5
   _greenhouse: {fileID: 124335957}
   _sewageTreatment: {fileID: 990815747}
@@ -14429,18 +14523,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _player: {fileID: 1586179471}
-  _playerInput: {fileID: 1586179472}
-  _progressBar: {fileID: 79313708}
-  _miningRobot: {fileID: 1076912779}
-  _comunicationUnitMenu: {fileID: 1165955511}
-  _miningMenu: {fileID: 171913154}
-  _greenhouse: {fileID: 124335957}
-  _greenhouseMenu: {fileID: 2082776089}
-  _miningRobotMenu: {fileID: 1728266232}
-  _plantMenu: {fileID: 1515055381}
-  _powerMenu: {fileID: 1156996799}
-  _comunicationUnit: {fileID: 1866397107}
-  _reactorMenu: {fileID: 804110903}
 --- !u!1 &1592692882
 GameObject:
   m_ObjectHideFlags: 0
@@ -15152,6 +15234,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1646288584
 MonoBehaviour:
@@ -15962,10 +16055,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _miningRobot: {fileID: 1076912779}
-  _player: {fileID: 1586179471}
   _miningRobotMenu: {fileID: 1728266233}
   _miningMenu: {fileID: 171913154}
-  _button1: {fileID: 694137752}
+  _firstSelectedButton: {fileID: 694137752}
 --- !u!225 &1728266233
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -16478,13 +16570,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 385572661}
         m_MethodName: Switch
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MiningRobot
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1076912779}
@@ -16727,7 +16819,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1517755906}
-        m_MethodName: Yes
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16845,7 +16937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b0d74fd32cd4149b6d4f68545691c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _victory: 0
   _time: 0
   _timeSending: 180
   _reactor: {fileID: 2137294583}
@@ -17138,13 +17229,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1515055381}
         m_MethodName: ChoiceVegetables
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: PlantTomatoes
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1914336279
@@ -18262,10 +18353,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _greenhouse: {fileID: 124335957}
-  _player: {fileID: 1586179471}
   _GreenhouseMenu: {fileID: 2082776090}
   _plantMenu: {fileID: 1515055381}
-  _button1: {fileID: 146782563}
+  _firstSelectedButton: {fileID: 146782563}
 --- !u!225 &2082776090
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -18705,6 +18795,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2129444690
 MonoBehaviour:

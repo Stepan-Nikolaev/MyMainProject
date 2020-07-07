@@ -7,18 +7,6 @@ public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Player _player;
-    [SerializeField] private PlayerInput _playerInput;
-    [SerializeField] private ProgressBar _progressBar;
-    [SerializeField] private MiningRobot _miningRobot;
-    [SerializeField] private ComunicationUnitMenu _comunicationUnitMenu;
-    [SerializeField] private MiningMenu _miningMenu;
-    [SerializeField] private Greenhouse _greenhouse;
-    [SerializeField] private GreenhouseMenu _greenhouseMenu;
-    [SerializeField] private MiningRobotMenu _miningRobotMenu;
-    [SerializeField] private PlantMenu _plantMenu;
-    [SerializeField] private PowerMenu _powerMenu;
-    [SerializeField] private ComunicationUnit _comunicationUnit;
-    [SerializeField] private ReactorMenu _reactorMenu;
     private Animator _animator;
     private Rigidbody2D _rigidbody;
     private bool _canMove;
@@ -33,35 +21,11 @@ public class PlayerMover : MonoBehaviour
     private void OnEnable()
     {
         _player.CanMoveChanged += OnCanMoveChanged;
-        _playerInput.CanMoveChanged += OnCanMoveChanged;
-        _progressBar.CanMoveChanged += OnCanMoveChanged;
-        _miningRobot.CanMoveChanged += OnCanMoveChanged;
-        _comunicationUnitMenu.CanMoveChanged += OnCanMoveChanged;
-        _miningMenu.CanMoveChanged += OnCanMoveChanged;
-        _greenhouse.CanMoveChanged += OnCanMoveChanged;
-        _greenhouseMenu.CanMoveChanged += OnCanMoveChanged;
-        _miningRobotMenu.CanMoveChanged += OnCanMoveChanged;
-        _plantMenu.CanMoveChanged += OnCanMoveChanged;
-        _powerMenu.CanMoveChanged += OnCanMoveChanged;
-        _comunicationUnit.CanMoveChanged += OnCanMoveChanged;
-        _reactorMenu.CanMoveChanged += OnCanMoveChanged;
     }
 
     private void OnDisable()
     {
         _player.CanMoveChanged -= OnCanMoveChanged;
-        _playerInput.CanMoveChanged += OnCanMoveChanged;
-        _progressBar.CanMoveChanged -= OnCanMoveChanged;
-        _miningRobot.CanMoveChanged -= OnCanMoveChanged;
-        _comunicationUnitMenu.CanMoveChanged -= OnCanMoveChanged;
-        _miningMenu.CanMoveChanged -= OnCanMoveChanged;
-        _greenhouse.CanMoveChanged -= OnCanMoveChanged;
-        _greenhouseMenu.CanMoveChanged -= OnCanMoveChanged;
-        _miningRobotMenu.CanMoveChanged -= OnCanMoveChanged;
-        _plantMenu.CanMoveChanged -= OnCanMoveChanged;
-        _powerMenu.CanMoveChanged -= OnCanMoveChanged;
-        _comunicationUnit.CanMoveChanged -= OnCanMoveChanged;
-        _reactorMenu.CanMoveChanged -= OnCanMoveChanged;
     }
 
     private void OnCanMoveChanged(bool canMove)
@@ -98,7 +62,7 @@ public class PlayerMover : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Stairs"))
+        if (collision.TryGetComponent(out Stairs stairs))
         {
             float direction = Input.GetAxis("Vertical");
 
@@ -120,7 +84,7 @@ public class PlayerMover : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Stairs"))
+        if (collision.TryGetComponent(out Stairs stairs))
         {
             _rigidbody.gravityScale = 1;
         }

@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class MenuExit : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _menuExit;
-    [SerializeField] private Button _button1;
+    [SerializeField] private Button _firstSelectedButton;
 
     public void Open()
     {
         _menuExit.alpha = 1;
         _menuExit.interactable = true;
-        _button1.Select();
+        _firstSelectedButton.Select();
         Time.timeScale = 0;
     }
 

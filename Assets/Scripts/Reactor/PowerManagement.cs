@@ -13,8 +13,6 @@ public class PowerManagement : MonoBehaviour
     [SerializeField] private Image _sewageTreatmentDarkness;
     [SerializeField] private Image _bedroomDarkness;
     [SerializeField] private Image _communicationUnitDarkness;
-
-    private float _darknessAlpha;
     private bool _greenhousePower;
     private bool _powerStationPower;
     private bool _miningRobotPower;
@@ -33,38 +31,38 @@ public class PowerManagement : MonoBehaviour
         _bedroomPower = false;
         _communicationUnitPower = false;
 
-        Switch(2);
+        Switch("PowerStation");
     }
 
-    public void Switch(int roomNumber)
+    public void Switch(string roomName)
     {
-        switch (roomNumber)
+        switch (roomName)
         {
-            case 1:
+            case "Greenhouse":
                 _greenhouseDarkness = Turn(_greenhouseDarkness);
                 _greenhousePower = !_greenhousePower;
                 break;
-            case 2:
+            case "PowerStation":
                 _powerStationDarkness = Turn(_powerStationDarkness);
                 _powerStationPower = !_powerStationPower;
                 break;
-            case 3:
+            case "MiningRobot":
                 _miningRobotDarkness = Turn(_miningRobotDarkness);
                 _miningRobotPower = !_miningRobotPower;
                 break;
-            case 4:
+            case "Synthesizer":
                 _synthesizerDarkness = Turn(_synthesizerDarkness);
                 _synthesizerPower = !_miningRobotPower;
                 break;
-            case 5:
+            case "SewageTreatment":
                 _sewageTreatmentDarkness = Turn(_sewageTreatmentDarkness);
                 _sewageTreatmentPower = !_sewageTreatmentPower;
                 break;
-            case 6:
+            case "Bedroom":
                 _bedroomDarkness = Turn(_bedroomDarkness);
                 _bedroomPower = !_bedroomPower;
                 break;
-            case 7:
+            case "ComunicationUnit":
                 _communicationUnitDarkness = Turn(_communicationUnitDarkness);
                 _communicationUnitPower = !_communicationUnitPower;
                 break;
@@ -90,31 +88,31 @@ public class PowerManagement : MonoBehaviour
         return roomDarkess;
     }
 
-    public bool UseRoom(int roomNumber)
+    public bool UseRoom(string roomNumber)
     {
         bool canUse = false;
 
         switch (roomNumber)
         {
-            case 1:
+            case "Greenhouse":
                 canUse = _greenhousePower;
                 break;
-            case 2:
+            case "PowerStation":
                 canUse = _powerStationPower;
                 break;
-            case 3:
+            case "MiningRobot":
                 canUse = _miningRobotPower;
                 break;
-            case 4:
+            case "Synthesizer":
                 canUse = _synthesizerPower;
                 break;
-            case 5:
+            case "SewageTreatment":
                 canUse = _sewageTreatmentPower;
                 break;
-            case 6:
+            case "Bedroom":
                 canUse = _bedroomPower;
                 break;
-            case 7:
+            case "ComunicationUnit":
                 canUse = _communicationUnitPower;
                 break;
         }

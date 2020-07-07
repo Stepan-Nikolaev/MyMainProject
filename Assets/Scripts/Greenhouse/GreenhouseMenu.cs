@@ -7,16 +7,13 @@ using UnityEngine.UI;
 public class GreenhouseMenu : MonoBehaviour
 {
     [SerializeField] private Greenhouse _greenhouse;
-    [SerializeField] private Player _player;
     [SerializeField] private CanvasGroup _GreenhouseMenu;
     [SerializeField] private PlantMenu _plantMenu;
-    [SerializeField] private Button _button1;
+    [SerializeField] private Button _firstSelectedButton;
 
-    public event UnityAction<bool> CanMoveChanged;
-
-    public void StartGreenhouseMenu()
+    public void OpenGreenhouseMenu()
     {
-        _button1.Select();
+        _firstSelectedButton.Select();
         _GreenhouseMenu.alpha = 1;
         _GreenhouseMenu.interactable = true;
     }
@@ -39,6 +36,5 @@ public class GreenhouseMenu : MonoBehaviour
     {
         _GreenhouseMenu.alpha = 0;
         _GreenhouseMenu.interactable = false;
-        CanMoveChanged?.Invoke(true);
     }
 }

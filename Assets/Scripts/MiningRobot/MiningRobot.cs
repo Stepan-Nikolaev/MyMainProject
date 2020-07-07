@@ -10,7 +10,6 @@ public class MiningRobot : MonoBehaviour
     [SerializeField] private Image _miningRobotImg;
     [SerializeField] private Image _iconSpoil;
     [SerializeField] private PowerManagement _powerMenagement;
-    [SerializeField] private Player _player;
     [SerializeField] private float _timeMiningPlateau;
     [SerializeField] private float _timeMiningRocks;
     [SerializeField] private float _timeMiningCaves;
@@ -29,7 +28,6 @@ public class MiningRobot : MonoBehaviour
     private bool _isMining;
 
     public event UnityAction<float> MetalsChanged;
-    public event UnityAction<bool> CanMoveChanged;
 
     private void Start()
     {
@@ -40,11 +38,11 @@ public class MiningRobot : MonoBehaviour
     {
         if (_mining != null)
         {
-            if (_powerMenagement.UseRoom(3))
+            if (_powerMenagement.UseRoom("MiningRobot"))
             {
                 _mining = StartCoroutine(Mining());
             }
-            else if (!_powerMenagement.UseRoom(3))
+            else if (!_powerMenagement.UseRoom("MiningRobot"))
             {
                 StopCoroutine(_mining);
             }
@@ -82,10 +80,6 @@ public class MiningRobot : MonoBehaviour
             StartMiningRobotClose();
             _isMining = true;
         }
-        else
-        {
-            CanMoveChanged?.Invoke(true);
-        }
     }
 
     private IEnumerator Mining()
@@ -117,12 +111,7 @@ public class MiningRobot : MonoBehaviour
             _metalsCount += _countSpoil;
             _spoil = false;
             _iconSpoil.enabled = false;
-            CanMoveChanged?.Invoke(true);
             MetalsChanged?.Invoke(_metalsCount);
-        }
-        else
-        {
-            CanMoveChanged?.Invoke(true);
         }
     }
 
@@ -133,7 +122,7 @@ public class MiningRobot : MonoBehaviour
 
     public void CheckMiningRobotImg()
     {
-        if (_powerMenagement.UseRoom(3))
+        if (_powerMenagement.UseRoom("MiningRobot"))
         {
             StartMiningRobotOpen();
         }

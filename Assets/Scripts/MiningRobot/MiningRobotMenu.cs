@@ -7,16 +7,13 @@ using UnityEngine.UI;
 public class MiningRobotMenu : MonoBehaviour
 {
     [SerializeField] private MiningRobot _miningRobot;
-    [SerializeField] private Player _player;
     [SerializeField] private CanvasGroup _miningRobotMenu;
     [SerializeField] private MiningMenu _miningMenu;
-    [SerializeField] private Button _button1;
+    [SerializeField] private Button _firstSelectedButton;
 
-    public event UnityAction<bool> CanMoveChanged;
-
-    public void StartMiningRobotMenu()
+    public void OpenMiningRobotMenu()
     {
-        _button1.Select();
+        _firstSelectedButton.Select();
         _miningRobotMenu.alpha = 1;
         _miningRobotMenu.interactable = true;
     }
@@ -39,6 +36,5 @@ public class MiningRobotMenu : MonoBehaviour
     {
         _miningRobotMenu.alpha = 0;
         _miningRobotMenu.interactable = false;
-        CanMoveChanged?.Invoke(true);
     }
 }

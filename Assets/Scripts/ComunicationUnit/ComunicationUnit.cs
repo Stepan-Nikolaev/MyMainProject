@@ -7,7 +7,6 @@ using UnityEngine.Events;
 
 public class ComunicationUnit : MonoBehaviour
 {
-    [SerializeField] private bool _victory;
     [SerializeField] private float _time;
     [SerializeField] private float _timeSending;
     [SerializeField] private Reactor _reactor;
@@ -17,8 +16,6 @@ public class ComunicationUnit : MonoBehaviour
     [SerializeField] private GameUI _gameUI;
     private Coroutine _sending;
 
-    public event UnityAction<bool> CanMoveChanged;
-
     public void StartSending()
     {
         if (_reactor.CheckCountPowerForSending())
@@ -26,22 +23,17 @@ public class ComunicationUnit : MonoBehaviour
             _time = _timeSending;
             _sending = StartCoroutine(Sending());
         }
-
-        CanMoveChanged?.Invoke(true);
     }
 
     public void ContinueCorutine()
     {
         if (_sending != null)
         {
-            if (!_powerMenagement.UseRoom(1))
-            {
-                StopCoroutine(_sending);
-                _reactor.SendingCansel();
-                _timerPanel.alpha = 0;
-                _time = _timeSending;
-                _sending = null;
-            }
+            StopCoroutine(_sending);
+            _reactor.SendingCansel();
+            _timerPanel.alpha = 0;
+            _time = _timeSending;
+            _sending = null;
         }
     }
 

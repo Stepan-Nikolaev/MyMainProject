@@ -17,17 +17,16 @@ public class ProgressBar : MonoBehaviour
     [SerializeField] private float _time;
     [SerializeField] private float _period;
 
-    public event UnityAction<bool> CanMoveChanged;
-
-    public void StartProgressBar(int actID)
+    public void StartProgressBar(string nameAction)
     {
         _time = 0;
-        CanMoveChanged?.Invoke(false);
-        StartCoroutine(Progress(actID));
+        StartCoroutine(Progress(nameAction));
     }
 
-    private IEnumerator Progress(int actID)
+    private IEnumerator Progress(string nameAction)
     {
+        _player.TakeCanMove(false);
+
         while (_time <= _period)
         {
             _progressBar.alpha = 1;
@@ -40,35 +39,35 @@ public class ProgressBar : MonoBehaviour
 
         if (_time > _period)
         {
-            switch (actID)
+            switch (nameAction)
             {
-                case 1:
+                case "PlantTomatoes":
                     _greenhouse.TomatoesChoice();
                     break;
-                case 2:
+                case "PlantCorn":
                     _greenhouse.CornChoice();
                     break;
-                case 3:
+                case "PlantPotatoes":
                     _greenhouse.PotatoesChoice();
                     break;
-                case 4:
+                case "Eaten":
                     _player.Eaten();
                     break;
-                case 5:
+                case "LevelUp":
                     _reactor.LevelUp();
                     break;
-                case 6:
+                case "MineOnPlateau":
                     _miningRobot.PlateauChoice();
                     break;
-                case 7:
+                case "MineOnRocks":
                     _miningRobot.RocksChoice();
                     break;
-                case 8:
+                case "MineOnCaves":
                     _miningRobot.CavesChoice();
                     break;
             }
 
-            CanMoveChanged?.Invoke(true);
+            _player.TakeCanMove(true);
             _progressBar.alpha = 0;
         }
     }

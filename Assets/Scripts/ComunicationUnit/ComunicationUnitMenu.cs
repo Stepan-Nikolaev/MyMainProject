@@ -8,12 +8,9 @@ public class ComunicationUnitMenu : MonoBehaviour
 {
     [SerializeField] private ComunicationUnit _comunicationUnit;
     [SerializeField] private CanvasGroup _comunicationUnitMenu;
-    [SerializeField] private Player _player;
     [SerializeField] private Button _firstSelectedButton;
 
-    public event UnityAction<bool> CanMoveChanged;
-
-    public void StartComunicationUnitMenu()
+    public void OpenComunicationUnitMenu()
     {
         _firstSelectedButton.Select();
         _comunicationUnitMenu.alpha = 1;
@@ -31,6 +28,5 @@ public class ComunicationUnitMenu : MonoBehaviour
     {
         _comunicationUnitMenu.alpha = 0;
         _comunicationUnitMenu.interactable = false;
-        CanMoveChanged?.Invoke(true);
     }
 }

@@ -17,12 +17,14 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private MiningRobotMenu _miningRobotMenu;
     [SerializeField] private ComunicationUnitMenu _comunicationUnitMenu;
     [SerializeField] private GameUI _gameUI;
+    private Player _player;
     private Animator _animator;
 
     public event UnityAction<bool> CanMoveChanged;
 
     private void Start()
     {
+        _player = GetComponent<Player>();
         _animator = GetComponent<Animator>();
     }
 
@@ -30,9 +32,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            //Кушать, у прогресс бара - 4
             _animator.SetBool("BackIdle", true);
-            _progressBar.StartProgressBar(4);
+            _progressBar.StartProgressBar("Eaten");
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -40,10 +41,12 @@ public class PlayerInput : MonoBehaviour
             if (_menuExit.MenuExitOpen())
             {
                 _menuExit.Close();
+                _player.TakeCanMove(true);
             }
             else
             {
                 _menuExit.Open();
+                _player.TakeCanMove(false);
             }
         }
 
@@ -59,12 +62,12 @@ public class PlayerInput : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (_powerManagement.UseRoom(1) && !_greenhouse.IsGrowing())
+                if (_powerManagement.UseRoom("Greenhouse") && !_greenhouse.IsGrowing())
                 {
                     _animator.SetBool("LeftWolk", false);
                     _animator.SetBool("RightWolk", false);
-                    CanMoveChanged?.Invoke(false);
-                    _greenhouseMenu.StartGreenhouseMenu();
+                    _greenhouseMenu.OpenGreenhouseMenu();
+                    _player.TakeCanMove(false);
                 }
             }
         }
@@ -73,12 +76,12 @@ public class PlayerInput : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (_powerManagement.UseRoom(2))
+                if (_powerManagement.UseRoom("PowerStation"))
                 {
                     _animator.SetBool("LeftWolk", false);
                     _animator.SetBool("RightWolk", false);
-                    CanMoveChanged?.Invoke(false);
-                    _reactorMenu.StartReactorMenu();
+                    _reactorMenu.OpenReactorMenu();
+                    _player.TakeCanMove(false);
                 }
             }
         }
@@ -87,12 +90,12 @@ public class PlayerInput : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (_powerManagement.UseRoom(3) && !_miningRobot.IsMining())
+                if (_powerManagement.UseRoom("MiningRobot") && !_miningRobot.IsMining())
                 {
                     _animator.SetBool("LeftWolk", false);
                     _animator.SetBool("RightWolk", false);
-                    CanMoveChanged?.Invoke(false);
-                    _miningRobotMenu.StartMiningRobotMenu();
+                    _miningRobotMenu.OpenMiningRobotMenu();
+                    _player.TakeCanMove(false);
                 }
             }
         }
@@ -101,12 +104,12 @@ public class PlayerInput : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (_powerManagement.UseRoom(7))
+                if (_powerManagement.UseRoom("ComunicationUnit"))
                 {
                     _animator.SetBool("LeftWolk", false);
                     _animator.SetBool("RightWolk", false);
-                    CanMoveChanged?.Invoke(false);
-                    _comunicationUnitMenu.StartComunicationUnitMenu();
+                    _comunicationUnitMenu.OpenComunicationUnitMenu();
+                    _player.TakeCanMove(false);
                 }
             }
         }

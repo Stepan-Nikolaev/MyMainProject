@@ -7,23 +7,20 @@ using UnityEngine.UI;
 public class ReactorMenu : MonoBehaviour
 {
     [SerializeField] private ProgressBar _progressBar;
-    [SerializeField] private Player _player;
     [SerializeField] private CanvasGroup _reactorMenu;
     [SerializeField] private PowerMenu _PowerMenu;
-    [SerializeField] private Button _button1;
+    [SerializeField] private Button _firstSelectedButton;
 
-    public event UnityAction<bool> CanMoveChanged;
-
-    public void StartReactorMenu()
+    public void OpenReactorMenu()
     {
-        _button1.Select();
+        _firstSelectedButton.Select();
         _reactorMenu.alpha = 1;
         _reactorMenu.interactable = true;
     }
 
     public void LevelUp()
     {
-        _progressBar.StartProgressBar(5);
+        _progressBar.StartProgressBar("LevelUp");
         _reactorMenu.alpha = 0;
         _reactorMenu.interactable = false;
     }
@@ -36,10 +33,9 @@ public class ReactorMenu : MonoBehaviour
         _reactorMenu.interactable = false;
     }
 
-    public void Exit()
+    public void Close()
     {
         _reactorMenu.alpha = 0;
         _reactorMenu.interactable = false;
-        CanMoveChanged?.Invoke(true);
     }
 }
