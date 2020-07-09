@@ -20,7 +20,6 @@ public class MiningRobotMenu : MonoBehaviour
 
     public void Spoil()
     {
-        _miningRobot.Spoil();
         _miningRobotMenu.alpha = 0;
         _miningRobotMenu.interactable = false;
     }

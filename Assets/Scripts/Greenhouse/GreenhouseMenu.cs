@@ -20,7 +20,6 @@ public class GreenhouseMenu : MonoBehaviour
 
     public void Harvest()
     {
-        _greenhouse.Harvest();
         _GreenhouseMenu.alpha = 0;
         _GreenhouseMenu.interactable = false;
     }

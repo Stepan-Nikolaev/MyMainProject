@@ -1622,20 +1622,31 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2082776089}
-        m_MethodName: Harvest
-        m_Mode: 1
+      - m_Target: {fileID: 1586179471}
+        m_MethodName: TakeCanMove
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1586179471}
-        m_MethodName: TakeCanMove
-        m_Mode: 6
+      - m_Target: {fileID: 79313708}
+        m_MethodName: StartProgressBar
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Harvest
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2082776089}
+        m_MethodName: Harvest
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3857,7 +3868,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _countPortions: 3
-  _iconHarvest: {fileID: 0}
   _growthTime: 60
 --- !u!95 &369109725
 Animator:
@@ -7242,6 +7252,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 79313708}
+        m_MethodName: StartProgressBar
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Spoil
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &694137753
@@ -11440,7 +11461,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _countPortions: 5
-  _iconHarvest: {fileID: 0}
   _growthTime: 90
 --- !u!95 &1201222740
 Animator:
@@ -12781,7 +12801,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _countPortions: 10
-  _iconHarvest: {fileID: 0}
   _growthTime: 120
 --- !u!95 &1302915130
 Animator:

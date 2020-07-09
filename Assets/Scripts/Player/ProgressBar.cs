@@ -65,6 +65,13 @@ public class ProgressBar : MonoBehaviour
                 case "MineOnCaves":
                     _miningRobot.CavesChoice();
                     break;
+                case "Harvest":
+                    _greenhouse.Harvest();
+                    break;
+                case "Spoil":
+                    _miningRobot.Spoil();
+                    break;
+
             }
 
             _player.TakeCanMove(true);
