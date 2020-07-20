@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Animator))]
+
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _hunger;
@@ -16,11 +18,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float _countWaterDrinking;
     [SerializeField] private Greenhouse _greenhouse;
     [SerializeField] private SewageTreatment _sewageTreatment;
-    [SerializeField] private GameUI _gameUI;
+
     private Animator _animator;
 
     public event UnityAction<float> HungerChanged;
     public event UnityAction<bool> CanMoveChanged;
+    public event UnityAction<bool> PlayerHungry;
+    public event UnityAction PlayerDie;
 
     private void Start()
     {
@@ -55,22 +59,22 @@ public class Player : MonoBehaviour
         if (_hunger >= 100)
         {
             TakeCanMove(false);
-            _gameUI.GameOver();
+            PlayerDie?.Invoke();
         }
 
         if (!_sewageTreatment.CheckCountWater())
         {
             TakeCanMove(false);
-            _gameUI.GameOver();
+            PlayerDie?.Invoke();
         }
 
         if (_hunger >= 80)
         {
-            _gameUI.ActivateAlertPanel();
+            PlayerHungry?.Invoke(true);
         }
         else
         {
-            _gameUI.DeactivateAlertPanel();
+            PlayerHungry?.Invoke(false);
         }
     }
 
@@ -88,5 +92,6 @@ public class Player : MonoBehaviour
     public void TakeCanMove(bool canMove)
     {
         CanMoveChanged?.Invoke(canMove);
+        _animator.Play("Back_Idle");
     }
 }

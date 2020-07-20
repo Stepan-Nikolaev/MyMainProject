@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Animator))]
+
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
@@ -10,6 +12,9 @@ public class PlayerMover : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidbody;
     private bool _canMove;
+    private bool _onStairs;
+
+    public bool CanAction => _canMove;
 
     private void Start()
     {
@@ -30,7 +35,11 @@ public class PlayerMover : MonoBehaviour
 
     private void OnCanMoveChanged(bool canMove)
     {
-        _animator.SetBool("BackIdle", !canMove);
+        if (!canMove)
+            _animator.Play("Back_Idle");
+        else
+            _animator.Play("Front_Idle");
+
         _canMove = canMove;
     }
 
@@ -42,18 +51,22 @@ public class PlayerMover : MonoBehaviour
 
             if (direction < 0)
             {
-                _animator.SetBool("LeftWolk", true);
+                if (!_onStairs)
+                    _animator.Play("Left_Run");
+
                 transform.localScale = new Vector3(1, 1, 1);
             }
             else if (direction > 0)
             {
-                _animator.SetBool("RightWolk", true);
+                if (!_onStairs)
+                    _animator.Play("Right_Run");
+
                 transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {
-                _animator.SetBool("LeftWolk", false);
-                _animator.SetBool("RightWolk", false);
+                if (!_onStairs)
+                    _animator.Play("Front_Idle");
             }
 
             _rigidbody.velocity = new Vector2(direction * _speed, _rigidbody.velocity.y);
@@ -64,16 +77,17 @@ public class PlayerMover : MonoBehaviour
     {
         if (collision.TryGetComponent(out Stairs stairs))
         {
+            _onStairs = true;
             float direction = Input.GetAxis("Vertical");
 
             if (direction != 0)
             {
-                _animator.SetBool("IsStairs", true);
+                _animator.Play("Back_Run");
                 transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {
-                _animator.SetBool("IsStairs", false);
+                _animator.Play("Back_Idle");
                 _rigidbody.gravityScale = 0;
             }
 
@@ -86,6 +100,7 @@ public class PlayerMover : MonoBehaviour
     {
         if (collision.TryGetComponent(out Stairs stairs))
         {
+            _onStairs = false;
             _rigidbody.gravityScale = 1;
         }
     }

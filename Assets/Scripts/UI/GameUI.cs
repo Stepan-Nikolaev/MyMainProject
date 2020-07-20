@@ -11,6 +11,40 @@ public class GameUI : MonoBehaviour
     [SerializeField] private CanvasGroup _welcome;
     [SerializeField] private MenuExit _menuExit;
     [SerializeField] private Animator _animator;
+    [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private Player _player;
+
+    private void OnEnable()
+    {
+        _playerInput.CloseWelcomeWindow += OnCloseWelcomeWindow;
+        _player.PlayerDie += OnPlayerDie;
+        _player.PlayerHungry += OnPlayerHungry;
+    }
+
+    private void OnDisable()
+    {
+        _playerInput.CloseWelcomeWindow -= OnCloseWelcomeWindow;
+        _player.PlayerDie -= OnPlayerDie;
+        _player.PlayerHungry -= OnPlayerHungry;
+    }
+
+    private void OnCloseWelcomeWindow()
+    {
+        CloseWelcomeWindow();
+    }
+
+    private void OnPlayerDie()
+    {
+        GameOver();
+    }
+
+    private void OnPlayerHungry(bool playerHungry)
+    {
+        if (playerHungry)
+            ActivateAlertPanel();
+        else
+            DeactivateAlertPanel();
+    }
 
     private void Start()
     {
@@ -42,7 +76,7 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void Welcome()
+    public void CloseWelcomeWindow()
     {
         if (_welcome.interactable)
         {

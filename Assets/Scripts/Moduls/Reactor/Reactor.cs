@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
-public class Reactor : MonoBehaviour
+public class Reactor : Modul
 {
     [SerializeField] private int _level1;
     [SerializeField] private int _level2;

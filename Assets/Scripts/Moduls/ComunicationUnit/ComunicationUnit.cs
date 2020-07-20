@@ -5,12 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
-public class ComunicationUnit : MonoBehaviour
+public class ComunicationUnit : Modul
 {
     [SerializeField] private float _time;
     [SerializeField] private float _timeSending;
     [SerializeField] private Reactor _reactor;
-    [SerializeField] private PowerManagement _powerMenagement;
     [SerializeField] private TMP_Text _timer;
     [SerializeField] private CanvasGroup _timerPanel;
     [SerializeField] private GameUI _gameUI;
@@ -22,6 +21,7 @@ public class ComunicationUnit : MonoBehaviour
         {
             _time = _timeSending;
             _sending = StartCoroutine(Sending());
+            IsWorking = true;
         }
     }
 
@@ -49,6 +49,7 @@ public class ComunicationUnit : MonoBehaviour
         }
 
         _timerPanel.alpha = 0;
+        IsWorking = false;
         _reactor.SendingCansel();
         _gameUI.Victory();
     }

@@ -5,9 +5,8 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class SewageTreatment : MonoBehaviour
+public class SewageTreatment : Modul
 {
-    [SerializeField] private PowerManagement _powerMeneger;
     [SerializeField] private float _waterCount;
     [SerializeField] private float _time;
     [SerializeField] private float _period;
@@ -23,7 +22,7 @@ public class SewageTreatment : MonoBehaviour
 
     private void Update()
     {
-        if (_powerMeneger.UseRoom("SewageTreatment"))
+        if (GetCanUseRoom())
         {
             if (_time <= 0)
             {

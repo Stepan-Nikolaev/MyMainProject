@@ -5,13 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
-public class Greenhouse : MonoBehaviour
+public class Greenhouse : Modul
 {
     [SerializeField] private Tomato _tomatoIcon;
     [SerializeField] private Corn _cornIcon;
     [SerializeField] private Potato _potatoIcon;
     [SerializeField] private SewageTreatment _sewageTreatment;
-    [SerializeField] private PowerManagement _powerMenagement;
     [SerializeField] private float _timeWatering;
     [SerializeField] private float _periodWatering;
     [SerializeField] private float _countWatering;
@@ -23,7 +22,6 @@ public class Greenhouse : MonoBehaviour
     private int _countPortions;
     private bool _harvest;
     private Coroutine _growth;
-    private bool _isGrowing;
     private Crops _chosenVegetable;
 
     public event UnityAction<int> FoodChanger;
@@ -63,11 +61,11 @@ public class Greenhouse : MonoBehaviour
     {
         if (_growth != null)
         {
-            if (_powerMenagement.UseRoom("Greenhouse"))
+            if (Power)
             {
                 _growth = StartCoroutine(Growth());
             }
-            else if (!_powerMenagement.UseRoom("Greenhouse"))
+            else
             {
                 StopCoroutine(_growth);
             }
@@ -78,7 +76,7 @@ public class Greenhouse : MonoBehaviour
         if (!_harvest)
         {
             _growth = StartCoroutine(Growth());
-            _isGrowing = true;
+            IsWorking = true;
         }
     }
 
@@ -106,7 +104,7 @@ public class Greenhouse : MonoBehaviour
         _timerPanel.alpha = 0;
         _chosenVegetable.TurnIcon();
         _growth = null;
-        _isGrowing = false;
+        IsWorking = false;
         _harvest = true;
     }
 
@@ -119,11 +117,6 @@ public class Greenhouse : MonoBehaviour
             _chosenVegetable.TurnIcon();
             FoodChanger?.Invoke(_foodCount);
         }
-    }
-
-    public bool IsGrowing()
-    {
-        return _isGrowing;
     }
 
     public bool TakeFood()

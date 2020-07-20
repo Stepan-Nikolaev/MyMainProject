@@ -5,11 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
-public class MiningRobot : MonoBehaviour
+public class MiningRobot : Modul
 {
     [SerializeField] private Image _miningRobotImg;
     [SerializeField] private Image _iconSpoil;
-    [SerializeField] private PowerManagement _powerMenagement;
     [SerializeField] private float _timeMiningPlateau;
     [SerializeField] private float _timeMiningRocks;
     [SerializeField] private float _timeMiningCaves;
@@ -25,7 +24,6 @@ public class MiningRobot : MonoBehaviour
     private bool _spoil;
     private Coroutine _mining;
     private Coroutine _turnMiningRobotImg;
-    private bool _isMining;
 
     public event UnityAction<float> MetalsChanged;
 
@@ -38,11 +36,11 @@ public class MiningRobot : MonoBehaviour
     {
         if (_mining != null)
         {
-            if (_powerMenagement.UseRoom("MiningRobot"))
+            if (Power)
             {
                 _mining = StartCoroutine(Mining());
             }
-            else if (!_powerMenagement.UseRoom("MiningRobot"))
+            else
             {
                 StopCoroutine(_mining);
             }
@@ -78,7 +76,7 @@ public class MiningRobot : MonoBehaviour
         {
             _mining = StartCoroutine(Mining());
             StartMiningRobotClose();
-            _isMining = true;
+            IsWorking = true;
         }
     }
 
@@ -99,7 +97,7 @@ public class MiningRobot : MonoBehaviour
             _timerPanel.alpha = 0;
             _iconSpoil.enabled = true;
             _mining = null;
-            _isMining = false;
+            IsWorking = false;
             StartMiningRobotOpen();
         }
 
@@ -115,14 +113,9 @@ public class MiningRobot : MonoBehaviour
         }
     }
 
-    public bool IsMining()
-    {
-        return _isMining;
-    }
-
     public void CheckMiningRobotImg()
     {
-        if (_powerMenagement.UseRoom("MiningRobot"))
+        if (Power)
         {
             StartMiningRobotOpen();
         }
