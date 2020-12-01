@@ -7,27 +7,21 @@ using UnityEngine.Events;
 
 public class Reactor : Modul
 {
-    [SerializeField] private int _level1;
-    [SerializeField] private int _level2;
-    [SerializeField] private int _level3;
-    [SerializeField] private int _metalsForLevel2;
-    [SerializeField] private int _metalsForLevel3;
+    [SerializeField] private int _countPoweredRooms;
     [SerializeField] private int _maxPowerCount;
     [SerializeField] private int _powerForComunicationUnit;
     [SerializeField] private int _powerForRoom;
     [SerializeField] private int _countPower;
-    [SerializeField] private TMP_Text _status;
-    [SerializeField] private Text _textButtonLevelUp;
     [SerializeField] private MiningRobot _miningRobot;
+    [SerializeField] private ReactorStates _currentReactorState;
+    [SerializeField] private PoolStates _poolStatesReactor;
 
     public event UnityAction<int> PowerChanged;
+    public event UnityAction<ReactorStates> StateChanged;
 
     private void Start()
     {
-        _level1 = 2;
-        _level2 = 5;
-        _level3 = 7;
-        _maxPowerCount = _level1 * _powerForRoom;
+        _countPower = _maxPowerCount - _countPoweredRooms * _powerForRoom;
         PowerChanged?.Invoke(_countPower);
     }
 
@@ -36,6 +30,7 @@ public class Reactor : Modul
         if (_countPower > 0 && _countPower <= _maxPowerCount)
         {
             _countPower -= _powerForRoom;
+            _countPoweredRooms += 1;
             PowerChanged?.Invoke(_countPower);
         }
     }
@@ -43,6 +38,7 @@ public class Reactor : Modul
     public void TurnOffRoom()
     {
         _countPower += _powerForRoom;
+        _countPoweredRooms -= 1;
         PowerChanged?.Invoke(_countPower);
     }
 
@@ -60,26 +56,13 @@ public class Reactor : Modul
 
     public void LevelUp()
     {
-        if (_maxPowerCount == (_level1 * _powerForRoom))
+        if (_miningRobot.GiveMetals(_currentReactorState.MetalsForNextLevel))
         {
-            if (_miningRobot.GiveMetals(_metalsForLevel2))
-            {
-                _textButtonLevelUp.text = $"Ремонт/n {_metalsForLevel3} кг металла";
-                _status.text = "Состояние: Хорошее";
-                _maxPowerCount = _level2 * _powerForRoom;
-                _countPower = _maxPowerCount - (_level1 * _powerForRoom - _countPower);
-                PowerChanged?.Invoke(_countPower);
-            }
-        }
-        else if (_maxPowerCount == (_level2 * _powerForRoom))
-        {
-            if (_miningRobot.GiveMetals(_metalsForLevel3))
-            {
-                _status.text = "Состояние: Отличное";
-                _maxPowerCount = _level3 * _powerForRoom;
-                _countPower = _maxPowerCount - (_level2 * _powerForRoom - _countPower);
-                PowerChanged?.Invoke(_countPower);
-            }
+            _currentReactorState = _poolStatesReactor.GetNextState(_currentReactorState);
+            _maxPowerCount = _currentReactorState.CountRoomsPowered * _powerForRoom;
+            _countPower = _maxPowerCount - _countPoweredRooms * _powerForRoom;
+            PowerChanged?.Invoke(_countPower);
+            StateChanged?.Invoke(_currentReactorState);
         }
     }
 
@@ -88,6 +71,7 @@ public class Reactor : Modul
         if (_countPower >= _powerForComunicationUnit)
         {
             _countPower -= _powerForComunicationUnit;
+            _countPoweredRooms += 3;
             PowerChanged?.Invoke(_countPower);
             return true;
         }
@@ -100,6 +84,7 @@ public class Reactor : Modul
     public void SendingCansel()
     {
         _countPower += _powerForComunicationUnit;
+        _countPoweredRooms -= 3;
         PowerChanged?.Invoke(_countPower);
     }
 }

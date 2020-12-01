@@ -15,6 +15,14 @@ public class SewageTreatment : Modul
 
     public event UnityAction<float> WaterChanged;
 
+    public bool CheckCountWater
+    {
+        get
+        {
+            return _waterCount > 0;
+        }
+    }
+
     private void Start()
     {
         WaterChanged?.Invoke(_waterCount);
@@ -22,7 +30,7 @@ public class SewageTreatment : Modul
 
     private void Update()
     {
-        if (GetCanUseRoom())
+        if (GetCanUseRoom)
         {
             if (_time <= 0)
             {
@@ -41,17 +49,5 @@ public class SewageTreatment : Modul
     {
         _waterCount -= countDrinkingWater;
         WaterChanged?.Invoke(_waterCount);
-    }
-
-    public bool CheckCountWater()
-    {
-        if (_waterCount > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 }

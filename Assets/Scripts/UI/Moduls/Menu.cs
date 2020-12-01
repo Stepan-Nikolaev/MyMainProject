@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CanvasGroup))]
+
 public class Menu : MonoBehaviour
 {
-    private CanvasGroup CanvasMenu;
+    protected CanvasGroup _windowMenu;
 
     private void Start()
     {
-        CanvasMenu = GetComponent<CanvasGroup>();
+        _windowMenu = GetComponent<CanvasGroup>();
     }
 
     public void Open()
     {
-        CanvasMenu.alpha = 1;
-        CanvasMenu.interactable = true;
-        CanvasMenu.blocksRaycasts = true;
+        _windowMenu.alpha = 1;
+        _windowMenu.interactable = true;
+        _windowMenu.blocksRaycasts = true;
     }
 
     public void Close()
     {
-        CanvasMenu.alpha = 0;
-        CanvasMenu.interactable = false;
-        CanvasMenu.blocksRaycasts = false;
+        _windowMenu.alpha = 0;
+        _windowMenu.interactable = false;
+        _windowMenu.blocksRaycasts = false;
     }
 }

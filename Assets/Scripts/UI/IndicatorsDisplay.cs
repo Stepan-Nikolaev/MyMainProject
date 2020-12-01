@@ -15,6 +15,9 @@ public class IndicatorsDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _foodDisplay;
     [SerializeField] private MiningRobot _miningRobot;
     [SerializeField] private TMP_Text _metalsDisplay;
+    [SerializeField] private int _minLevelIndicators;
+    [SerializeField] private int _maxAmountResources;
+    [SerializeField] private int _maxAmountHunger;
 
     private void OnEnable()
     {
@@ -35,12 +38,12 @@ public class IndicatorsDisplay : MonoBehaviour
 
     private void OnHungerChanged(float hunger)
     {
-        _hungerDisplay.text = Mathf.Clamp(hunger, 0, 100).ToString() + " %";
+        _hungerDisplay.text = Mathf.Clamp(hunger, _minLevelIndicators, _maxAmountHunger).ToString() + " %";
     }
 
     private void OnWaterChanged(float water)
     {
-        _waterDisplay.text = Mathf.Clamp(water, 0, 1000).ToString() + " литров";
+        _waterDisplay.text = Mathf.Clamp(water, _minLevelIndicators, _maxAmountResources).ToString() + " литров";
     }
 
     private void OnPowerChaged(int power)
@@ -50,11 +53,11 @@ public class IndicatorsDisplay : MonoBehaviour
 
     private void OnFoodChanger(int food)
     {
-        _foodDisplay.text = Mathf.Clamp(food, 0, 1000).ToString() + " порций";
+        _foodDisplay.text = Mathf.Clamp(food, _minLevelIndicators, _maxAmountResources).ToString() + " порций";
     }
 
     private void OnMetalsChanger(float metals)
     {
-        _metalsDisplay.text = Mathf.Clamp(metals, 0, 1000).ToString() + " кг";
+        _metalsDisplay.text = Mathf.Clamp(metals, _minLevelIndicators, _maxAmountResources).ToString() + " кг";
     }
 }

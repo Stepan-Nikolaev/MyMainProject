@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent (typeof(Image))]
+[RequireComponent(typeof(Button))]
+[RequireComponent(typeof(CanvasGroup))]
+
 public class ButtonView : MonoBehaviour
 {
     private CanvasGroup _canvasAllButtonMenu;
@@ -48,12 +52,14 @@ public class ButtonView : MonoBehaviour
             ShowButton();
         }
         else
+        {
             HideButton();
+        }
     }
 
     public void ShowButton()
     {
-        if (_modul.GetCanUseRoom() && _player.CanAction)
+        if (_modul.GetCanUseRoom && _player.CanAction)
         {
             _canvasAllButtonMenu.interactable = true;
             _canvasAllButtonMenu.blocksRaycasts = true;

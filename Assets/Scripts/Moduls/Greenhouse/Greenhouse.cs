@@ -34,8 +34,8 @@ public class Greenhouse : Modul
     public void TomatoesChoice()
     {
         _chosenVegetable = _tomatoIcon;
-        _time = _tomatoIcon.GetGrowthTime();
-        _countPortions = _tomatoIcon.GetCountPortions();
+        _time = _tomatoIcon.GetGrowthTime;
+        _countPortions = _tomatoIcon.GetCountPortions;
 
         StartGrowth();
     }
@@ -43,16 +43,16 @@ public class Greenhouse : Modul
     public void CornChoice()
     {
         _chosenVegetable = _cornIcon;
-        _time = _cornIcon.GetGrowthTime();
-        _countPortions = _cornIcon.GetCountPortions();
+        _time = _cornIcon.GetGrowthTime;
+        _countPortions = _cornIcon.GetCountPortions;
 
         StartGrowth();
     }
     public void PotatoesChoice()
     {
         _chosenVegetable = _potatoIcon;
-        _time = _potatoIcon.GetGrowthTime();
-        _countPortions = _potatoIcon.GetCountPortions();
+        _time = _potatoIcon.GetGrowthTime;
+        _countPortions = _potatoIcon.GetCountPortions;
 
         StartGrowth();
     }
@@ -102,7 +102,7 @@ public class Greenhouse : Modul
         }
 
         _timerPanel.alpha = 0;
-        _chosenVegetable.TurnIcon();
+        _chosenVegetable.ViewIcon();
         _growth = null;
         IsWorking = false;
         _harvest = true;
@@ -114,7 +114,7 @@ public class Greenhouse : Modul
         {
             _foodCount += _countPortions;
             _harvest = false;
-            _chosenVegetable.TurnIcon();
+            _chosenVegetable.ViewIcon();
             FoodChanger?.Invoke(_foodCount);
         }
     }

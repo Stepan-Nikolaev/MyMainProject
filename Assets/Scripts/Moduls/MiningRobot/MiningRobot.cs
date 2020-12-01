@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class MiningRobot : Modul
 {
+    [SerializeField] private PoolMiningLocation _poolMiningLocation;
     [SerializeField] private Image _miningRobotImg;
     [SerializeField] private Image _iconSpoil;
     [SerializeField] private float _timeMiningPlateau;
@@ -47,33 +48,13 @@ public class MiningRobot : Modul
         }
     }
 
-    public void PlateauChoice()
-    {
-        _time = _timeMiningPlateau;
-        _countSpoil = _countSpoilPlateau;
-
-        StartMining();
-    }
-
-    public void RocksChoice()
-    {
-        _time = _timeMiningRocks;
-        _countSpoil = _countSpoilRocks;
-
-        StartMining();
-    }
-    public void CavesChoice()
-    {
-        _time = _timeMiningCaves;
-        _countSpoil = _countSpoilCaves;
-
-        StartMining();
-    }
-
-    private void StartMining()
+    public void StartMining(string nameAction)
     {
         if (!_spoil)
         {
+            MiningLocation currentMiningLocation = _poolMiningLocation.GetCurrentMiningLocation(nameAction);
+            _time = currentMiningLocation.TimeMining;
+            _countSpoil = currentMiningLocation.CountSpoil;
             _mining = StartCoroutine(Mining());
             StartMiningRobotClose();
             IsWorking = true;

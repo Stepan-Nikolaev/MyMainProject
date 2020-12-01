@@ -7,25 +7,23 @@ using UnityEngine.Events;
 
 public class ProgressBar : MonoBehaviour
 {
-    [SerializeField] private MiningRobot _miningRobot;
-    [SerializeField] private Reactor _reactor;
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerAction _playerAction;
     [SerializeField] private CanvasGroup _progressBar;
-    [SerializeField] private Greenhouse _greenhouse;
+    [SerializeField] private Player _player;
     [SerializeField] private Image _progressImage;
     [SerializeField] private TMP_Text _progressText;
     [SerializeField] private float _time;
     [SerializeField] private float _period;
 
-    public void StartProgressBar(string nameAction)
+    public void StartProgressBar()
     {
         _time = 0;
-        StartCoroutine(Progress(nameAction));
+        StartCoroutine(PerformingAction());
     }
 
-    private IEnumerator Progress(string nameAction)
+    private IEnumerator PerformingAction()
     {
-        _player.TakeCanMove(false);
+        _player.TakeInfoAboutPlayer(false);
 
         while (_time <= _period)
         {
@@ -39,42 +37,9 @@ public class ProgressBar : MonoBehaviour
 
         if (_time > _period)
         {
-            switch (nameAction)
-            {
-                case "PlantTomatoes":
-                    _greenhouse.TomatoesChoice();
-                    break;
-                case "PlantCorn":
-                    _greenhouse.CornChoice();
-                    break;
-                case "PlantPotatoes":
-                    _greenhouse.PotatoesChoice();
-                    break;
-                case "Eaten":
-                    _player.Eaten();
-                    break;
-                case "LevelUp":
-                    _reactor.LevelUp();
-                    break;
-                case "MineOnPlateau":
-                    _miningRobot.PlateauChoice();
-                    break;
-                case "MineOnRocks":
-                    _miningRobot.RocksChoice();
-                    break;
-                case "MineOnCaves":
-                    _miningRobot.CavesChoice();
-                    break;
-                case "Harvest":
-                    _greenhouse.Harvest();
-                    break;
-                case "Spoil":
-                    _miningRobot.Spoil();
-                    break;
+            _playerAction.FinishAction();
 
-            }
-
-            _player.TakeCanMove(true);
+            _player.TakeInfoAboutPlayer(true);
             _progressBar.alpha = 0;
         }
     }

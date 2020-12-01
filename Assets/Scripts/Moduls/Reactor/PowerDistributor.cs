@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PowerManagement : MonoBehaviour
+public class PowerDistributor : MonoBehaviour
 {
     [SerializeField] private List<Modul> moduls;
     [SerializeField] private Reactor _reactor;

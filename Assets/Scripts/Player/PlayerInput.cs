@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(Animator))]
 
 public class PlayerInput : MonoBehaviour
 {
+    [SerializeField] private PlayerAction _playerAction;
     [SerializeField] private ProgressBar _progressBar;
     private Animator _animator;
 
@@ -24,7 +24,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             _animator.Play("Back_Idle");
-            _progressBar.StartProgressBar("Eaten");
+            _playerAction.StartAction("Eaten");
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

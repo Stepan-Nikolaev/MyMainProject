@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
 
 public class PlayerMover : MonoBehaviour
 {
@@ -11,41 +12,41 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private Player _player;
     private Animator _animator;
     private Rigidbody2D _rigidbody;
-    private bool _canMove;
+    private bool _abilityMove;
     private bool _onStairs;
 
-    public bool CanAction => _canMove;
+    public bool CanAction => _abilityMove;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _canMove = true;
+        _abilityMove = true;
     }
 
     private void OnEnable()
     {
-        _player.CanMoveChanged += OnCanMoveChanged;
+        _player.CanMoveChanged += OnAbilityMoveChanged;
     }
 
     private void OnDisable()
     {
-        _player.CanMoveChanged -= OnCanMoveChanged;
+        _player.CanMoveChanged -= OnAbilityMoveChanged;
     }
 
-    private void OnCanMoveChanged(bool canMove)
+    private void OnAbilityMoveChanged(bool abilityMove)
     {
-        if (!canMove)
+        if (!abilityMove)
             _animator.Play("Back_Idle");
         else
             _animator.Play("Front_Idle");
 
-        _canMove = canMove;
+        _abilityMove = abilityMove;
     }
 
     private void FixedUpdate()
     {
-        if (_canMove)
+        if (_abilityMove)
         {
             float direction = Input.GetAxis("Horizontal");
 

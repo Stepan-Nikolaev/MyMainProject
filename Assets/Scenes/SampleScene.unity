@@ -626,7 +626,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1586179471}
-        m_MethodName: TakeCanMove
+        m_MethodName: TakeInfoAboutPlayer
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1200,11 +1200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7765504f20c56714388c8f66dba74ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _miningRobot: {fileID: 1076912779}
-  _reactor: {fileID: 2137294583}
-  _player: {fileID: 1586179471}
+  _playerAction: {fileID: 1586179474}
   _progressBar: {fileID: 79313707}
-  _greenhouse: {fileID: 124335957}
+  _player: {fileID: 1586179471}
   _progressImage: {fileID: 1538647405}
   _progressText: {fileID: 631085684}
   _time: 0
@@ -1489,7 +1487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Greenhouse
   RoomDarkness: {fileID: 454039218}
-  _powerManagement: {fileID: 385572661}
+  _powerDistributor: {fileID: 0}
   _tomatoIcon: {fileID: 369109724}
   _cornIcon: {fileID: 1201222739}
   _potatoIcon: {fileID: 1302915129}
@@ -1636,7 +1634,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1586179471}
-        m_MethodName: TakeCanMove
+        m_MethodName: TakeInfoAboutPlayer
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1646,8 +1644,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 79313708}
-        m_MethodName: StartProgressBar
+      - m_Target: {fileID: 1586179474}
+        m_MethodName: StartAction
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2086,8 +2084,8 @@ MonoBehaviour:
           m_StringArgument: MineOnPlateau
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 79313708}
-        m_MethodName: StartProgressBar
+      - m_Target: {fileID: 1586179474}
+        m_MethodName: StartAction
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3158,8 +3156,8 @@ MonoBehaviour:
           m_StringArgument: MineOnCaves
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 79313708}
-        m_MethodName: StartProgressBar
+      - m_Target: {fileID: 1586179474}
+        m_MethodName: StartAction
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3277,7 +3275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Bedroom
   RoomDarkness: {fileID: 508864178}
-  _powerManagement: {fileID: 385572661}
+  _powerDistributor: {fileID: 0}
 --- !u!1 &281257223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3573,6 +3571,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305159967}
   m_CullTransparentMesh: 0
+--- !u!1 &319310127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 319310128}
+  - component: {fileID: 319310129}
+  m_Layer: 0
+  m_Name: Bad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &319310128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319310127}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 583215430}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &319310129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319310127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7f34241a1e7bb45b61a21ff0acde7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &321455710
 GameObject:
   m_ObjectHideFlags: 0
@@ -4440,7 +4481,7 @@ GameObject:
   - component: {fileID: 385572658}
   - component: {fileID: 385572661}
   m_Layer: 5
-  m_Name: Power Manager
+  m_Name: Power Distributor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4541,7 +4582,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 385572656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f089ec8195392b043af8138241506b20, type: 3}
+  m_Script: {fileID: 11500000, guid: fca88bae906d974469f474a16e2402db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moduls:
@@ -5491,8 +5532,8 @@ MonoBehaviour:
           m_StringArgument: PlantCorn
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 79313708}
-        m_MethodName: StartProgressBar
+      - m_Target: {fileID: 1586179474}
+        m_MethodName: StartAction
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6353,6 +6394,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573916449}
   m_CullTransparentMesh: 0
+--- !u!1 &583215429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 583215430}
+  - component: {fileID: 583215431}
+  m_Layer: 0
+  m_Name: PoolStates
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &583215430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583215429}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 319310128}
+  - {fileID: 880303909}
+  - {fileID: 1325551924}
+  m_Father: {fileID: 2137294582}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &583215431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583215429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c637e3ab83b26459dd2c9abf7d43da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolStates:
+  - {fileID: 319310129}
+  - {fileID: 880303910}
+  - {fileID: 1325551925}
 --- !u!1 &583785075
 GameObject:
   m_ObjectHideFlags: 0
@@ -7904,7 +7995,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1586179471}
-        m_MethodName: TakeCanMove
+        m_MethodName: TakeInfoAboutPlayer
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7914,8 +8005,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 79313708}
-        m_MethodName: StartProgressBar
+      - m_Target: {fileID: 1586179474}
+        m_MethodName: StartAction
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8615,7 +8706,7 @@ CanvasGroup:
   m_GameObject: {fileID: 804110898}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &804110903
@@ -8627,9 +8718,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 804110898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 463bedfd1f25aa84d83539074377e46f, type: 3}
+  m_Script: {fileID: 11500000, guid: 30d9c5845747df14f9d1282eec129301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelUpButton: {fileID: 1684971735}
+  _reactor: {fileID: 2137294583}
+  _currentCountMetalsForLevelUp: 40
+  _currentState: "\u041F\u043B\u043E\u0445\u043E\u0435"
+  _label: {fileID: 2122554383}
+  _textButtonLevelUp: {fileID: 156311957}
 --- !u!1 &807363716
 GameObject:
   m_ObjectHideFlags: 0
@@ -9179,6 +9276,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867221272}
   m_CullTransparentMesh: 0
+--- !u!1 &880303908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 880303909}
+  - component: {fileID: 880303910}
+  m_Layer: 0
+  m_Name: Good
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &880303909
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880303908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 583215430}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &880303910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880303908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8ce53a78ea7f54c8bba8a403b69d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &898979281
 GameObject:
   m_ObjectHideFlags: 0
@@ -9251,7 +9391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Synthesizer
   RoomDarkness: {fileID: 1798708456}
-  _powerManagement: {fileID: 385572661}
+  _powerDistributor: {fileID: 0}
 --- !u!1 &922130872
 GameObject:
   m_ObjectHideFlags: 0
@@ -9345,8 +9485,8 @@ MonoBehaviour:
           m_StringArgument: MineOnRocks
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 79313708}
-        m_MethodName: StartProgressBar
+      - m_Target: {fileID: 1586179474}
+        m_MethodName: StartAction
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10166,7 +10306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: SewageTreatment
   RoomDarkness: {fileID: 1396562917}
-  _powerManagement: {fileID: 385572661}
+  _powerDistributor: {fileID: 0}
   _waterCount: 15
   _time: 0
   _period: 5
@@ -10912,7 +11052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: MiningRobot
   RoomDarkness: {fileID: 743567407}
-  _powerManagement: {fileID: 385572661}
+  _powerDistributor: {fileID: 0}
   _miningRobotImg: {fileID: 1262502964}
   _iconSpoil: {fileID: 1253557205}
   _timeMiningPlateau: 90
@@ -10924,7 +11064,7 @@ MonoBehaviour:
   _time: 0
   _timer: {fileID: 1198228487}
   _timerPanel: {fileID: 856929061}
-  _metalsCount: 10
+  _metalsCount: 500
 --- !u!1 &1078062409
 GameObject:
   m_ObjectHideFlags: 0
@@ -11319,7 +11459,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1586179471}
-        m_MethodName: TakeCanMove
+        m_MethodName: TakeInfoAboutPlayer
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13967,6 +14107,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324739674}
   m_CullTransparentMesh: 0
+--- !u!1 &1325551923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1325551924}
+  - component: {fileID: 1325551925}
+  m_Layer: 0
+  m_Name: Great
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1325551924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325551923}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 583215430}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1325551925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325551923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da55618c75923d4da292295962c0291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1396562915
 GameObject:
   m_ObjectHideFlags: 0
@@ -14134,7 +14317,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1586179471}
-        m_MethodName: TakeCanMove
+        m_MethodName: TakeInfoAboutPlayer
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14607,8 +14790,8 @@ MonoBehaviour:
           m_StringArgument: PlantPotatoes
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 79313708}
-        m_MethodName: StartProgressBar
+      - m_Target: {fileID: 1586179474}
+        m_MethodName: StartAction
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15828,6 +16011,7 @@ GameObject:
   - component: {fileID: 1586179471}
   - component: {fileID: 1586179473}
   - component: {fileID: 1586179472}
+  - component: {fileID: 1586179474}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -15979,13 +16163,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunger: 0
-  _timeHunger: 0
+  _timeHunger: 20
   _periodHunger: 20
   _timeDrink: 15
   _periodDrink: 15
   _countWaterDrinking: 0.5
   _greenhouse: {fileID: 124335957}
   _sewageTreatment: {fileID: 990815747}
+  _minHungerLavel: 0
+  _maxHungerLavel: 100
+  _alertHungerLavel: 80
+  _countHungerInOnePortionFood: 50
+  _stepGrowthHunger: 10
 --- !u!114 &1586179472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15998,6 +16187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857f366f9b781c94f99ff96f473e2721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerAction: {fileID: 1586179474}
   _progressBar: {fileID: 79313708}
 --- !u!114 &1586179473
 MonoBehaviour:
@@ -16012,6 +16202,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
+  _player: {fileID: 1586179471}
+--- !u!114 &1586179474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586179465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3fe0d6aa3992cf4db75617e56040535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _greenhouse: {fileID: 124335957}
+  _reactor: {fileID: 2137294583}
+  _miningRobot: {fileID: 1076912779}
+  _progressBar: {fileID: 79313708}
   _player: {fileID: 1586179471}
 --- !u!1 &1591181377
 GameObject:
@@ -17353,8 +17560,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 79313708}
-        m_MethodName: StartProgressBar
+      - m_Target: {fileID: 1586179474}
+        m_MethodName: StartAction
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18101,6 +18308,9 @@ MonoBehaviour:
   _foodDisplay: {fileID: 50488491}
   _miningRobot: {fileID: 1076912779}
   _metalsDisplay: {fileID: 1494948897}
+  _minLevelIndicators: 0
+  _maxAmountResources: 1000
+  _maxAmountHunger: 100
 --- !u!225 &1779185009
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -18678,7 +18888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: ComunicationUnit
   RoomDarkness: {fileID: 867221274}
-  _powerManagement: {fileID: 385572661}
+  _powerDistributor: {fileID: 0}
   _time: 0
   _timeSending: 180
   _reactor: {fileID: 2137294583}
@@ -18979,8 +19189,8 @@ MonoBehaviour:
           m_StringArgument: PlantTomatoes
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 79313708}
-        m_MethodName: StartProgressBar
+      - m_Target: {fileID: 1586179474}
+        m_MethodName: StartAction
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20802,7 +21012,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1586179471}
-        m_MethodName: TakeCanMove
+        m_MethodName: TakeInfoAboutPlayer
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21026,8 +21236,9 @@ GameObject:
   - component: {fileID: 2137294582}
   - component: {fileID: 2137294581}
   - component: {fileID: 2137294583}
+  - component: {fileID: 2137294584}
   m_Layer: 0
-  m_Name: PowerStation
+  m_Name: Reactor
   m_TagString: PowerStation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21072,6 +21283,7 @@ Transform:
   m_Children:
   - {fileID: 385572657}
   - {fileID: 1827126373}
+  - {fileID: 583215430}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21089,16 +21301,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: PowerStation
   RoomDarkness: {fileID: 1158600043}
-  _powerManagement: {fileID: 385572661}
-  _level1: 2
-  _level2: 5
-  _level3: 7
-  _metalsForLevel2: 40
-  _metalsForLevel3: 100
-  _maxPowerCount: 2
+  _powerDistributor: {fileID: 385572661}
+  _countPoweredRooms: 0
+  _maxPowerCount: 28
   _powerForComunicationUnit: 42
   _powerForRoom: 14
   _countPower: 14
   _status: {fileID: 1702990027}
   _textButtonLevelUp: {fileID: 156311957}
   _miningRobot: {fileID: 1076912779}
+  _currentReactorState: {fileID: 319310129}
+  _poolStatesReactor: {fileID: 583215431}
+--- !u!114 &2137294584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137294580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1806aca017bf35a4aae1ffbd1a545d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
